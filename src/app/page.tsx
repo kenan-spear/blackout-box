@@ -1,27 +1,111 @@
 import Link from "next/link";
+import Image from "next/image";
 import EmailCapture from "@/components/EmailCapture";
 
 export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative bg-[#0a0a0a] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_#7c340040_0%,_transparent_60%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-[#7c3400]/30 border border-[#e85d04]/30 px-3 py-1 mb-8">
-              <span className="w-2 h-2 rounded-full bg-[#e85d04] animate-pulse" />
-              <span className="text-[#e85d04] text-xs font-bold uppercase tracking-widest">Offline AI Device</span>
-            </div>
+      <section className="relative bg-[#0a0a0a] overflow-hidden min-h-[90vh] flex flex-col">
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <Image
+            src="/hero.png"
+            alt="Blackout Box rugged case with solar panel on a mountain ridge at sunset"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+          {/* Dark gradient left-to-right so text is legible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/10" />
+          {/* Bottom fade for topic strip */}
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
+        </div>
+
+        {/* Content */}
+        <div className="relative flex-1 flex flex-col justify-between max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          {/* Main text + icons — left column */}
+          <div className="max-w-xl">
+            {/* Headline */}
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#f5f1ea] uppercase leading-none mb-6"
+              className="font-extrabold uppercase leading-none mb-6"
               style={{ fontFamily: "var(--font-barlow)" }}
             >
-              Knowledge that doesn&rsquo;t need a signal.
+              <span className="block text-6xl sm:text-7xl md:text-8xl text-white">KNOWLEDGE</span>
+              <span className="flex items-center gap-3 text-3xl sm:text-4xl md:text-5xl text-[#e85d04] my-1">
+                <span className="flex-1 h-[3px] bg-[#e85d04]" />
+                <span>THAT DOESN&rsquo;T</span>
+                <span className="flex-1 h-[3px] bg-[#e85d04]" />
+              </span>
+              <span className="block text-6xl sm:text-7xl md:text-8xl text-[#e85d04]">NEED A SIGNAL.</span>
             </h1>
-            <p className="text-[#c8c3ba] text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+
+            {/* Subheadline */}
+            <p className="text-white/90 text-base md:text-lg leading-relaxed mb-10 max-w-md">
               A rugged, off-grid AI loaded with the survival, medical, and repair know-how you&rsquo;d normally have to Google — in a box that runs on battery or sun, with zero internet.
             </p>
+
+            {/* Icons row */}
+            <div className="flex flex-wrap gap-5 mb-10">
+              {[
+                {
+                  label: "ZERO\nINTERNET",
+                  icon: (
+                    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10" stroke="#e85d04" strokeWidth="2.5" strokeLinecap="round">
+                      <circle cx="20" cy="20" r="18" />
+                      <path d="M5 5L35 35" />
+                      <path d="M20 28a2 2 0 100 4 2 2 0 000-4z" fill="#e85d04" stroke="none" />
+                      <path d="M8 16c3.2-3.2 7.4-5 12-5s8.8 1.8 12 5" />
+                      <path d="M13 21c1.8-1.8 4.3-3 7-3s5.2 1.2 7 3" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "BATTERY\nPOWERED",
+                  icon: (
+                    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10" stroke="#e85d04" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="4" y="10" width="30" height="20" rx="3" />
+                      <path d="M34 16v8" strokeWidth="4" />
+                      <path d="M18 14l-4 6h8l-4 6" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "SOLAR\nREADY",
+                  icon: (
+                    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10" stroke="#e85d04" strokeWidth="2.5" strokeLinecap="round">
+                      <circle cx="20" cy="20" r="7" />
+                      <path d="M20 3v4M20 33v4M3 20h4M33 20h4M7.6 7.6l2.8 2.8M29.6 29.6l2.8 2.8M32.4 7.6l-2.8 2.8M10.4 29.6l-2.8 2.8" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: "OFF-GRID AI\nKNOWLEDGE",
+                  icon: (
+                    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10" stroke="#e85d04" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 8c0-3.3 2.7-6 6-6s6 2.7 6 6c0 2-1 3.8-2.5 4.9" />
+                      <path d="M26 12.9C28.3 14 30 16.3 30 19c0 1.5-.5 2.9-1.4 4" />
+                      <path d="M14 8C11.7 9.1 10 11.4 10 14c0 2.5 1.4 4.6 3.5 5.7" />
+                      <circle cx="20" cy="22" r="5" />
+                      <path d="M15 30h10M17 34h6" />
+                      <circle cx="20" cy="22" r="2" fill="#e85d04" stroke="none" />
+                    </svg>
+                  ),
+                },
+              ].map((item) => (
+                <div key={item.label} className="flex flex-col items-center gap-2 min-w-[70px]">
+                  <div className="border border-[#e85d04]/60 bg-black/40 p-3 rounded-sm">
+                    {item.icon}
+                  </div>
+                  <span className="text-white text-[10px] font-bold uppercase tracking-widest text-center whitespace-pre-line leading-tight">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/shop"
@@ -31,10 +115,22 @@ export default function Home() {
               </Link>
               <Link
                 href="/how-it-works"
-                className="border border-[#2e2e2e] hover:border-[#f5f1ea] text-[#c8c3ba] hover:text-[#f5f1ea] font-bold px-8 py-4 uppercase tracking-wider text-sm transition-colors"
+                className="border border-white/40 hover:border-white text-white font-bold px-8 py-4 uppercase tracking-wider text-sm transition-colors"
               >
                 See How It Works
               </Link>
+            </div>
+          </div>
+
+          {/* Topic strip — bottom */}
+          <div className="mt-16">
+            <div className="inline-flex items-center border border-[#e85d04]/60 px-6 py-3 gap-0">
+              {["SURVIVAL", "MEDICAL", "REPAIR", "EMERGENCY", "HOMESTEADING", "AND MORE"].map((topic, i, arr) => (
+                <span key={topic} className="flex items-center">
+                  <span className="text-white text-xs font-bold uppercase tracking-widest">{topic}</span>
+                  {i < arr.length - 1 && <span className="text-[#e85d04] mx-3 font-bold">•</span>}
+                </span>
+              ))}
             </div>
           </div>
         </div>
