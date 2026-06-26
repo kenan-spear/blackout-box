@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -35,18 +36,24 @@ export default function HowItWorks() {
                 title: "Power It On",
                 desc: "Plug in the included power bank, unfold the solar panel, or connect any USB-C source. The Blackout Box boots in under 90 seconds — no setup, no login, no configuration. Battery-backed and solar-ready out of the box.",
                 detail: "The device runs on a hardened Raspberry Pi platform — field-proven, low-power, and repairable. It draws less power than a phone charger.",
+                image: "/power-it-on.png",
+                imageAlt: "Blackout Box rugged case sitting in a truck bed at golden hour",
               },
               {
                 step: "02",
                 title: "Ask It Anything",
                 desc: "Connect your phone or laptop to the Blackout Box Wi-Fi hotspot (no internet — it's local). Open a browser, type your question in plain English. Ask how to stop a bleed, purify water, diagnose a generator, or preserve a harvest.",
                 detail: "The Field Kit and Ready-to-Run are headless — you use your own device as the display. The Basecamp has a built-in touchscreen.",
+                image: null,
+                imageAlt: "",
               },
               {
                 step: "03",
                 title: "Get Answers from the Library",
                 desc: "The on-device AI reads your question and pulls answers from your Library pack — hundreds of curated reference texts, all stored on-device. Answers appear in plain language, in seconds.",
                 detail: "Important: the AI runs locally, so responses take seconds, not milliseconds. Like any AI, it can occasionally be wrong — always verify life-critical decisions. We tell you this because honesty is how we earn your trust.",
+                image: null,
+                imageAlt: "",
               },
             ].map((item, i) => (
               <div key={item.step} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
@@ -68,9 +75,22 @@ export default function HowItWorks() {
                     <p className="text-[#6b7280] text-sm leading-relaxed border-l-2 border-[#2e2e2e] pl-4">{item.detail}</p>
                   </div>
                 </div>
-                <div className="bg-[#1a1a1a] border border-[#2e2e2e] aspect-video flex items-center justify-center">
-                  <span className="text-[#2e2e2e] text-xs uppercase tracking-widest">Product Image / Demo</span>
-                </div>
+                {item.image ? (
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority={i === 0}
+                    />
+                  </div>
+                ) : (
+                  <div className="bg-[#1a1a1a] border border-[#2e2e2e] aspect-video flex items-center justify-center">
+                    <span className="text-[#2e2e2e] text-xs uppercase tracking-widest">Product Image / Demo</span>
+                  </div>
+                )}
               </div>
             ))}
           </div>
